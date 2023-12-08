@@ -1,0 +1,20 @@
+model: codeparrot-small 
+https://huggingface.co/codeparrot/codeparrot-small
+
+data: codeparrot-clean-train 
+https://huggingface.co/datasets/codeparrot/codeparrot-clean-train
+
+tutorial参考：
+https://github.com/huggingface/blog/blob/main/megatron-training.md #该链接包含data processing方法。并且提供了megatron的训练参数，但是我们要把tp size设置成4（不开sequence parallel
+https://github.com/huggingface/blog/blob/main/codeparrot.md #该链接提供了codeparrot accuracy的evaluation方法
+
+data process：
+0. data准备需要安装datasets包，pip install datasets 参考连接：https://huggingface.co/docs/datasets/installation
+
+1. 首先下载codeparrot-clean-train datasets，可参考download.sh和download_json.py将json格式的data下载到目标文件夹。需要注意download.sh中的export HF_DATASETS_CACHE环境变量是为了设置 datasets下载的cache，默认为~/.cache/huggingface/datasets，因为$HOME空间比较小，所以最好将其设置到其他目录下。参考（https://huggingface.co/docs/datasets/v1.12.0/cache.html）
+
+2. 然后在执行data_process.sh，该操作可能时间较长，将尽十个小时。vocab.json和merges.txt可以参考https://huggingface.co/codeparrot/codeparrot-small/tree/main
+
+traing:
+
+可参考train.sh和run.sh
