@@ -1,0 +1,14 @@
+Training Model GPT-neox
+
+All GPT-NeoXmodels:
+https://github.com/EleutherAI/gpt-neox/blob/main/configs
+
+GPT-NeoX 125M
+https://github.com/EleutherAI/gpt-neox/blob/main/configs/125M.yml
+
+GPT-NeoX 1.3B
+https://github.com/EleutherAI/gpt-neox/blob/main/configs/1-3B.yml
+
+
+Training Dataset: WikiText-103-v1
+https://huggingface.co/datasets/wikitext/viewer/wikitext-103-v1
