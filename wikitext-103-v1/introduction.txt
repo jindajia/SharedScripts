@@ -12,3 +12,6 @@ https://github.com/EleutherAI/gpt-neox/blob/main/configs/1-3B.yml
 
 Training Dataset: WikiText-103-v1
 https://huggingface.co/datasets/wikitext/viewer/wikitext-103-v1
+
+vocab and merges files from
+https://huggingface.co/gpt2/tree/main
