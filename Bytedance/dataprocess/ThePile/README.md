@@ -8,5 +8,6 @@ I already copy it to my github repository in jinda/data_preprocess branch. Check
 
 ## Package requirements
 
-datasets (https://huggingface.co/docs/datasets/installation)
-transformers (https://huggingface.co/docs/transformers/installation)
+datasets (https://huggingface.co/docs/datasets/installation) \
+transformers (https://huggingface.co/docs/transformers/installation) \
+huggingface_hub (https://huggingface.co/docs/huggingface_hub/installation)
