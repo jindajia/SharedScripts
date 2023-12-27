@@ -21,5 +21,5 @@ end_time = time.time()
 print(f"Save as jsonl finished. Elapsed time: {end_time - start_time:.4f} seconds")
 
 # download merges.txt and vocab.json from gpt2 repository in huggingface (https://huggingface.co/gpt2)
-hf_hub_download(repo_id="gpt2", filename="merges.txt", local_dir=os.path.join(save_path, 'c4'))
-hf_hub_download(repo_id="gpt2", filename="vocab.json", local_dir=os.path.join(save_path, 'c4'))
+hf_hub_download(repo_id="gpt2", filename="merges.txt", local_dir=save_path, 'c4')
+hf_hub_download(repo_id="gpt2", filename="vocab.json", local_dir=save_path, 'c4')
