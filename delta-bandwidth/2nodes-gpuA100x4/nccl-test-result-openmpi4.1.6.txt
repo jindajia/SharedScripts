@@ -1,0 +1,142 @@
++ module list
++ '[' -z '' ']'
++ case "$-" in
++ __lmod_sh_dbg=x
++ '[' -n x ']'
++ set +x
+Shell debugging temporarily silenced: export LMOD_SH_DBG_ON=1 for Lmod's output
+
+Currently Loaded Modules:
+  1) gcc/11.4.0   2) openmpi/4.1.6   3) cuda/11.8.0
+
+ 
+
+Shell debugging restarted
++ unset __lmod_sh_dbg
++ return 0
++ route
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         _gateway        0.0.0.0         UG    104    0        0 hsn0
+dns1.ncsa.illin vl-551-cwmgmt-f 255.255.255.255 UGH   105    0        0 eth1
+141.142.144.0   0.0.0.0         255.255.254.0   U     104    0        0 hsn0
+141.142.192.0   vl-551-cwmgmt-f 255.255.248.0   UG    105    0        0 eth1
+dns2.ncsa.illin vl-551-cwmgmt-f 255.255.255.255 UGH   105    0        0 eth1
+dt-conf01.delta vl-551-cwmgmt-f 255.255.255.255 UGH   105    0        0 eth1
+dt-log-old.delt vl-551-cwmgmt-f 255.255.255.255 UGH   105    0        0 eth1
+172.28.22.0     0.0.0.0         255.255.254.0   U     105    0        0 eth1
+dt-conf02.delta vl-551-cwmgmt-f 255.255.255.255 UGH   105    0        0 eth1
+dt-log01.delta. vl-551-cwmgmt-f 255.255.255.255 UGH   105    0        0 eth1
+172.28.38.0     _gateway        255.255.255.0   UG    104    0        0 hsn0
++ nvidia-smi
+Thu Feb  1 13:12:33 2024       
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 535.129.03             Driver Version: 535.129.03   CUDA Version: 12.2     |
+|-----------------------------------------+----------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
+|                                         |                      |               MIG M. |
+|=========================================+======================+======================|
+|   0  NVIDIA A100-SXM4-40GB          On  | 00000000:07:00.0 Off |                    0 |
+| N/A   27C    P0              51W / 400W |      4MiB / 40960MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+|   1  NVIDIA A100-SXM4-40GB          On  | 00000000:46:00.0 Off |                    0 |
+| N/A   29C    P0              71W / 400W |      4MiB / 40960MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+|   2  NVIDIA A100-SXM4-40GB          On  | 00000000:85:00.0 Off |                    0 |
+| N/A   29C    P0              72W / 400W |      4MiB / 40960MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+|   3  NVIDIA A100-SXM4-40GB          On  | 00000000:C7:00.0 Off |                    0 |
+| N/A   29C    P0              58W / 400W |      4MiB / 40960MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+                                                                                         
++---------------------------------------------------------------------------------------+
+| Processes:                                                                            |
+|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+|        ID   ID                                                             Usage      |
+|=======================================================================================|
+|  No running processes found                                                           |
++---------------------------------------------------------------------------------------+
++ export LD_LIBRARY_PATH=/projects/bcev/jjia1/TOOLS/nccl/build/lib:/sw/spack/deltas11-2023-03/apps/linux-rhel8-zen3/gcc-11.4.0/openmpi-4.1.6-lranp74/lib:/sw/spack/deltas11-2023-03/apps/linux-rhel8-zen3/gcc-11.4.0/cuda-11.8.0-vfixfmc/lib64:/sw/spack/deltas11-2023-03/apps/linux-rhel8-zen3/gcc-11.4.0/cuda-11.8.0-vfixfmc/lib64:/opt/cray/libfabric/1.15.2.0/lib64:/opt/cray/libfabric/1.15.2.0/lib
++ LD_LIBRARY_PATH=/projects/bcev/jjia1/TOOLS/nccl/build/lib:/sw/spack/deltas11-2023-03/apps/linux-rhel8-zen3/gcc-11.4.0/openmpi-4.1.6-lranp74/lib:/sw/spack/deltas11-2023-03/apps/linux-rhel8-zen3/gcc-11.4.0/cuda-11.8.0-vfixfmc/lib64:/sw/spack/deltas11-2023-03/apps/linux-rhel8-zen3/gcc-11.4.0/cuda-11.8.0-vfixfmc/lib64:/opt/cray/libfabric/1.15.2.0/lib64:/opt/cray/libfabric/1.15.2.0/lib
++ NNODES=2
++ GPUS_PER_NODE=4
++ DATA_BYTES=1073741824
+++ scontrol show hostnames
+++ sort -u
++ HOSTNAMES='gpua057
+gpua092'
++ HOSTLIST=
++ for HOST in $HOSTNAMES
++ HOSTLIST=gpua057,
++ for HOST in $HOSTNAMES
++ HOSTLIST=gpua057,gpua092,
++ HOSTLIST=gpua057,gpua092
++ cd /projects/bcev/jjia1/TOOLS/nccl-tests/build
++ srun ./reduce_scatter_perf -b 1073741824 -e 1073741824 -g 4 -d half
+# nThread 1 nGpus 4 minBytes 1073741824 maxBytes 1073741824 step: 1048576(bytes) warmup iters: 5 iters: 20 agg iters: 1 validation: 1 graph: 0
+#
+# Using devices
+#  Rank  0 Group  0 Pid 3566598 on    gpua057 device  0 [0x07] NVIDIA A100-SXM4-40GB
+#  Rank  1 Group  0 Pid 3566598 on    gpua057 device  1 [0x46] NVIDIA A100-SXM4-40GB
+#  Rank  2 Group  0 Pid 3566598 on    gpua057 device  2 [0x85] NVIDIA A100-SXM4-40GB
+#  Rank  3 Group  0 Pid 3566598 on    gpua057 device  3 [0xc7] NVIDIA A100-SXM4-40GB
+#  Rank  4 Group  0 Pid 4075211 on    gpua092 device  0 [0x07] NVIDIA A100-SXM4-40GB
+#  Rank  5 Group  0 Pid 4075211 on    gpua092 device  1 [0x46] NVIDIA A100-SXM4-40GB
+#  Rank  6 Group  0 Pid 4075211 on    gpua092 device  2 [0x85] NVIDIA A100-SXM4-40GB
+#  Rank  7 Group  0 Pid 4075211 on    gpua092 device  3 [0xc7] NVIDIA A100-SXM4-40GB
+#
+#                                                              out-of-place                       in-place          
+#       size         count      type   redop    root     time   algbw   busbw #wrong     time   algbw   busbw #wrong
+#        (B)    (elements)                               (us)  (GB/s)  (GB/s)            (us)  (GB/s)  (GB/s)       
+  1073741824      67108864      half     sum      -1   325254    3.30    2.89      0   315977    3.40    2.97      0
+# Out of bounds values : 0 OK
+# Avg bus bandwidth    : 2.93099 
+#
+
++ srun ./all_gather_perf -b 1073741824 -e 1073741824 -g 4 -d half
+# nThread 1 nGpus 4 minBytes 1073741824 maxBytes 1073741824 step: 1048576(bytes) warmup iters: 5 iters: 20 agg iters: 1 validation: 1 graph: 0
+#
+# Using devices
+#  Rank  0 Group  0 Pid 3566663 on    gpua057 device  0 [0x07] NVIDIA A100-SXM4-40GB
+#  Rank  1 Group  0 Pid 3566663 on    gpua057 device  1 [0x46] NVIDIA A100-SXM4-40GB
+#  Rank  2 Group  0 Pid 3566663 on    gpua057 device  2 [0x85] NVIDIA A100-SXM4-40GB
+#  Rank  3 Group  0 Pid 3566663 on    gpua057 device  3 [0xc7] NVIDIA A100-SXM4-40GB
+#  Rank  4 Group  0 Pid 4075264 on    gpua092 device  0 [0x07] NVIDIA A100-SXM4-40GB
+#  Rank  5 Group  0 Pid 4075264 on    gpua092 device  1 [0x46] NVIDIA A100-SXM4-40GB
+#  Rank  6 Group  0 Pid 4075264 on    gpua092 device  2 [0x85] NVIDIA A100-SXM4-40GB
+#  Rank  7 Group  0 Pid 4075264 on    gpua092 device  3 [0xc7] NVIDIA A100-SXM4-40GB
+#
+#                                                              out-of-place                       in-place          
+#       size         count      type   redop    root     time   algbw   busbw #wrong     time   algbw   busbw #wrong
+#        (B)    (elements)                               (us)  (GB/s)  (GB/s)            (us)  (GB/s)  (GB/s)       
+  1073741824      67108864      half    none      -1   302577    3.55    3.11      0   302870    3.55    3.10      0
+# Out of bounds values : 0 OK
+# Avg bus bandwidth    : 3.10357 
+#
+
++ srun ./alltoall_perf -b 1073741824 -e 1073741824 -g 4 -d half
+# nThread 1 nGpus 4 minBytes 1073741824 maxBytes 1073741824 step: 1048576(bytes) warmup iters: 5 iters: 20 agg iters: 1 validation: 1 graph: 0
+#
+# Using devices
+#  Rank  0 Group  0 Pid 3566734 on    gpua057 device  0 [0x07] NVIDIA A100-SXM4-40GB
+#  Rank  1 Group  0 Pid 3566734 on    gpua057 device  1 [0x46] NVIDIA A100-SXM4-40GB
+#  Rank  2 Group  0 Pid 3566734 on    gpua057 device  2 [0x85] NVIDIA A100-SXM4-40GB
+#  Rank  3 Group  0 Pid 3566734 on    gpua057 device  3 [0xc7] NVIDIA A100-SXM4-40GB
+#  Rank  4 Group  0 Pid 4075318 on    gpua092 device  0 [0x07] NVIDIA A100-SXM4-40GB
+#  Rank  5 Group  0 Pid 4075318 on    gpua092 device  1 [0x46] NVIDIA A100-SXM4-40GB
+#  Rank  6 Group  0 Pid 4075318 on    gpua092 device  2 [0x85] NVIDIA A100-SXM4-40GB
+#  Rank  7 Group  0 Pid 4075318 on    gpua092 device  3 [0xc7] NVIDIA A100-SXM4-40GB
+#
+#                                                              out-of-place                       in-place          
+#       size         count      type   redop    root     time   algbw   busbw #wrong     time   algbw   busbw #wrong
+#        (B)    (elements)                               (us)  (GB/s)  (GB/s)            (us)  (GB/s)  (GB/s)       
+  1073741824      67108864      half    none      -1   394513    2.72    2.38      0   395494    2.71    2.38    N/A
+# Out of bounds values : 0 OK
+# Avg bus bandwidth    : 2.37853 
+#
+
